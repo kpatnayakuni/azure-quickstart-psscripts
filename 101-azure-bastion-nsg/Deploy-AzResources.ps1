@@ -23,13 +23,11 @@ param
 
     [parameter(Mandatory, ParameterSetName = 'New')]
     [parameter(Mandatory, ParameterSetName = 'Existing')]
-    [Parameter(Mandatory)]
     [string] $BastionHostName, # Name of the Azure Bastion resource
 
     [parameter(Mandatory, ParameterSetName = 'New')]
     [parameter(Mandatory, ParameterSetName = 'Existing')]
-    [Parameter(Mandatory)]
-    [string] $BastionSubnetIPPrefix = '10.1.1.0/27'  # Bastion subnet IP prefix MUST be within vnet IP prefix address space
+    [string] $BastionSubnetIPPrefix  # Bastion subnet IP prefix MUST be within vnet IP prefix address space
 )
 
 $PublicIpAddressName = "$BastionHostName-pip"
@@ -96,7 +94,7 @@ try
     $NSRule5 = New-AzNetworkSecurityRuleConfig -Name 'bastion-azure-out-allow' -Priority 120 -Access Allow -Direction Outbound -DestinationPortRange 443 `
         -Protocol Tcp -SourcePortRange * -SourceAddressPrefix * -DestinationAddressPrefix AzureCloud
 
-    # NSG
+    # NetworkSecurityGroup
     $NetworkSecurotyGroup = New-AzNetworkSecurityGroup -ResourceGroupName $ResourceGroupName -Location $Location -Name $NsgName -SecurityRules $NSRule1, $NSRule2, $NSRule3, $NSRule4, $NSRule5
 
     # Add Bastion Subnet to Virtual Network
@@ -123,8 +121,13 @@ catch
 }
 finally
 {
+    # Write deployment status
     if ($DeployStatus)
     {
         Write-Host -ForegroundColor Green "$BastionHostName is successfully deployed."
+    }
+    else 
+    {
+        Write-Host -ForegroundColor Red "$BastionHostName deployed is unsuccessful."
     }
 }
