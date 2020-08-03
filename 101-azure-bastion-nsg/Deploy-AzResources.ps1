@@ -30,12 +30,14 @@ param
     [string] $BastionSubnetIPPrefix  # Bastion subnet IP prefix MUST be within vnet IP prefix address space
 )
 
+# Declaring local variables
 $PublicIpAddressName = "$BastionHostName-pip"
 $BastionSubnetName = "AzureBastionSubnet"
 $NsgName = "$BastionHostName-nsg"
 
 # Supress the warning messages
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+
 try
 {
     if ($PSCmdlet.ParameterSetName -eq 'Existing')
