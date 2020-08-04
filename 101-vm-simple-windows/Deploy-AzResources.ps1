@@ -3,17 +3,23 @@ param
 (
     [parameter(Mandatory)]
     [string] $resourceGroupName, # Resource Group Name
+
     [parameter(Mandatory)]
     [string] $location, # Location for all resources.
+
     [parameter(Mandatory)]
     [string] $adminUsername, # Username for the Virtual Machine.
+
     [parameter(Mandatory)]
     [securestring] $adminPassword, # Password for the Virtual Machine.
+
     [parameter(Mandatory)]
     [string] $dnsLabelPrefix, # Unique DNS Name for the Public IP used to access the Virtual Machine.
+
     [parameter(Mandatory = $false)]
     [ValidateSet('2008-R2-SP1', '2012-Datacenter', '2012-R2-Datacenter', '2016-Nano-Server', '2016-Datacenter-with-Containers', '2016-Datacenter', '2019-Datacenter')]
     [string] $windowsOSVersion = '2016-Datacenter', # The Windows version for the VM. This will pick a fully patched image of this given Windows version.
+    
     [parameter(Mandatory = $false)]
     [string] $vmSize = 'Standard_A2_v2'  # Size of the virtual machine.
 )
@@ -62,7 +68,7 @@ try
     # Create Network Interface Card
     $networkInterfaceCard = New-AzNetworkInterface -ResourceGroupName $resourceGroupName -Location $location -Name $nicName -SubnetId $virtualNetwork.Subnets[0].Id -PublicIpAddressId $publicIpAddress.Id 
 
-    ### Create Virtual Mchine
+    ### Create Virtual Machine
     ## VM Configuration
     # Virtual Machine Credentials
     $adminCredential = [pscredential]::new($adminUsername, $adminPassword)
