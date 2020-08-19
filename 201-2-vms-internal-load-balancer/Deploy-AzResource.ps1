@@ -28,8 +28,9 @@ $LoadBalancerName = 'ilb'
 $NetworkInterfaceName = 'nic'
 $NumberOfInstances = 2
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script if the resource group is already exists
 if (Get-AzResourceGroup -Name $ResourceGroupName -ErrorAction SilentlyContinue) 

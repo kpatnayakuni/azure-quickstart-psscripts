@@ -31,7 +31,7 @@ $subnetPrefix = "10.0.0.0/24"     # Subnet Address Prefix
 $storageAccountType = "Standard_LRS"
 $publicIPAddressName = "myPublicIP"      # Public IP Address Name
 $publicIPAddressType = "Dynamic"
-$vmName = "SimpleWinVM"     # Virtual Machine Name
+$vmName = "LinuxVM"     # Virtual Machine Name
 $vmSize = "Standard_A1"
 $virtualNetworkName = "MyVNET"          # Virtual Network Name
 $networkSecurityGroupName = "default-NSG"     # Network Security Group Name
@@ -43,8 +43,9 @@ if (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)
     return
 }
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 try
 {

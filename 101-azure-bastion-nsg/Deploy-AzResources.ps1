@@ -35,8 +35,9 @@ $PublicIpAddressName = "$BastionHostName-pip"
 $BastionSubnetName = "AzureBastionSubnet"
 $NsgName = "$BastionHostName-nsg"
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 try
 {

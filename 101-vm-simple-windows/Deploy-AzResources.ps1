@@ -35,8 +35,9 @@ $vmName = "SimpleWinVM"     # Virtual Machine Name
 $virtualNetworkName = "MyVNET"          # Virtual Network Name
 $networkSecurityGroupName = "default-NSG"     # Network Security Group Name
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script is the resource group is already exists
 if (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue) 
