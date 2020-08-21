@@ -101,7 +101,8 @@ try
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red
+    Write-Host "Execution is failed with the following error, and cleaning the deployment..." -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
     $DeployStatus = $false
     $null = Remove-AzResourceGroup -Name $ResourceGroupName -Force 
 }
@@ -109,11 +110,6 @@ finally
 {
     # Display the deployment status
     if ($DeployStatus) 
-    { 
-        Write-Host -ForegroundColor Green "Deployment is successful!"
-    }
-    else 
-    { 
-        Write-Host -ForegroundColor Red "Deployment is unsuccessful!" 
-    }
+    { Write-Host -ForegroundColor Green "Deployment is successful!" }
+    else { Write-Host -ForegroundColor Red "Deployment is unsuccessful!" }
 }
