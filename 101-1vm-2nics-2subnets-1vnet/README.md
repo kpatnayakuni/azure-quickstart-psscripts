@@ -7,7 +7,7 @@ Multi-NIC Virtual Machine Creation using Two Subnets
 
 This is a conversion of ARM template [101-1vm-2nics-2subnets-1vnet](https://github.com/Azure/azure-quickstart-templates/tree/master/101-1vm-2nics-2subnets-1vnet) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
 
-This script creates a new VM with two NICs which connect to two different subnets within the same VNet, and it will deploy following the resources...
+This script creates a new VM with two NICs which connect to two different subnets within the same VNet, and it will deploy the following resources...
 
 ![image](resources.jpg)
 
