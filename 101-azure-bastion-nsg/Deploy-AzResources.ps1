@@ -110,14 +110,14 @@ try
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host -ForegroundColor Red $_
+    Write-Host -ForegroundColor Red $_.Exception.Message
     if ($PSCmdlet.ParameterSetName -eq 'Existing')
     {
-        Write-Host "Execution failed, clean the deployment manually..." -ForegroundColor Red
+        Write-Host "Execution is failed with the above error, and clean the deployment manually..." -ForegroundColor Red
     }
     elseif ($PSCmdlet.ParameterSetName -eq 'New')
     {
-        Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red    
+        Write-Host "Execution is failed with the above error, and cleaning the deployment..." -ForegroundColor Red    
         $null = Remove-AzResourceGroup -Name $ResourceGroupName -Force 
     }
     $DeployStatus = $false
@@ -126,11 +126,6 @@ finally
 {
     # Write deployment status
     if ($DeployStatus)
-    {
-        Write-Host -ForegroundColor Green "$BastionHostName is successfully deployed."
-    }
-    else 
-    {
-        Write-Host -ForegroundColor Red "$BastionHostName deployed is unsuccessful."
-    }
+    { Write-Host -ForegroundColor Green "$BastionHostName is successfully deployed." }
+    else { Write-Host -ForegroundColor Red "$BastionHostName deployed is unsuccessful." }
 }
