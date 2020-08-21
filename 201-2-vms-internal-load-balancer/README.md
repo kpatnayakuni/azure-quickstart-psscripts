@@ -5,7 +5,9 @@ Create 2 Virtual Machines under an Internal Load balancer and configures Load Ba
 
 ## Description
 
-This is a conversion of ARM template [201-2-vms-internal-load-balancer](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-internal-load-balancer) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script, and this script will deploy following the resources...
+This is a conversion of ARM template [201-2-vms-internal-load-balancer](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-internal-load-balancer) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
+
+This script allows you to create 2 Virtual Machines under an Internal Load balancer, and also deploys a Storage Account, Virtual Network, Availability Set and Network Interfaces. The Azure Load Balancer is assigned a static IP in the Virtual Network and is configured to load balance on Port 80, and it will deploy following the resources...
 
 ![image](resources.png)
 

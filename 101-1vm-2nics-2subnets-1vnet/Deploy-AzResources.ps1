@@ -3,15 +3,20 @@ param
 (
     [parameter(Mandatory)]
     [string] $ResourceGroupName, # Resource Group Name
+
     [parameter(Mandatory)]
     [string] $Location, # Location for all resources.
+
     [parameter(Mandatory)]
     [string] $AdminUsername, # Username for the Virtual Machine.
+
     [parameter(Mandatory)]
     [securestring] $AdminPassword, # Password for the Virtual Machine.
+
     [parameter(Mandatory = $false)]
     [ValidateSet('Standard_LRS', 'Premium_LRS')]
     [string] $StorageAccountType = 'Standard_LRS', # Storage Account type for the VM and VM diagnostic storage.
+    
     [parameter(Mandatory = $false)]
     [string] $VMSize = 'Standard_DS1_v2'  # Size of the virtual machine, virtual machine size (has to be at least the size of Standard_A3 to support 2 NICs)
 )
@@ -31,8 +36,9 @@ $StorageAccountName = ('diags', -join ((0x30..0x39) + ( 0x61..0x7A) | Get-Random
 $NetworkSecurityGroupName1 = "NSG"     # Network Security Group 1 Name for Primary NIC
 $NetworkSecurityGroupName2 = "$Subnet2Name-NSG"     # Network Security Group 2 Name for 2nd NIC
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script is the resource group is already exists
 if (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue) 
@@ -102,7 +108,8 @@ try
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red
+    Write-Host "Execution is failed with the following error, and cleaning the deployment..." -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
     $DeployStatus = $false
     $null = Remove-AzResourceGroup -Name $ResourceGroupName -Force 
 }
@@ -114,8 +121,5 @@ finally
         Write-Host -ForegroundColor Green "Deployment is successful!"
         Write-Host ("HostName: {0}" -f $PublicIpAddress.IpAddress)
     }
-    else 
-    { 
-        Write-Host -ForegroundColor Red "Deployment is unsuccessful!" 
-    }
+    else { Write-Host -ForegroundColor Red "Deployment is unsuccessful!" }
 }

@@ -5,7 +5,9 @@ Virtual Network with two Subnets
 
 ## Description
 
-This is a conversion of ARM template [101-vnet-two-subnets](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vnet-two-subnets) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script, and this script will deploy following the resources...
+This is a conversion of ARM template [101-vnet-two-subnets](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vnet-two-subnets) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
+
+This script allows you to create a Virtual Network with two subnets, and it will deploy following the resources...
 
 ### Virtual Network
 ![image](resources1.png)

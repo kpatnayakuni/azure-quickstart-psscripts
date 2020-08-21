@@ -5,7 +5,9 @@ Azure SQL Database
 
 ## Description
 
-This is a conversion of ARM template [101-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/101-sql-database) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script, and this script will deploy following the resources...
+This is a conversion of ARM template [101-sql-database](https://github.com/Azure/azure-quickstart-templates/tree/master/101-sql-database) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
+
+This script allows you to create Azure SQL Database, and it will deploy following the resources...
 
 ![image](resources.png)
 

@@ -34,8 +34,9 @@ param
     [string] $Subnet2Prefix = '10.0.1.0/24'
 )
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script if the resource group is already exists
 if (Get-AzResourceGroup -Name $ResourceGroupName -ErrorAction SilentlyContinue) 
@@ -59,12 +60,13 @@ try
     $null = New-AzVirtualNetwork -ResourceGroupName $ResourceGroupName -Location $Location -Name $VNetName -AddressPrefix $VNetAddressSpace -Subnet $Subnet1, $Subnet2
 
     # Deployment status
-    $DeployStatus = $?
+    $DeployStatus = $true
 }
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red
+    Write-Host "Execution is failed with the following error, and cleaning the deployment..." -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
     $DeployStatus = $false
     $null = Remove-AzResourceGroup -Name $ResourceGroupName -Force 
 }
@@ -72,11 +74,6 @@ finally
 {
     # Display the deployment status
     if ($DeployStatus) 
-    { 
-        Write-Host -ForegroundColor Green "Deployment is successful!"
-    }
-    else 
-    { 
-        Write-Host -ForegroundColor Red "Deployment is unsuccessful!" 
-    }
+    { Write-Host -ForegroundColor Green "Deployment is successful!" }
+    else { Write-Host -ForegroundColor Red "Deployment is unsuccessful!" }
 }

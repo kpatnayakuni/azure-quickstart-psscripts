@@ -35,8 +35,9 @@ $vmName = "SimpleWinVM"     # Virtual Machine Name
 $virtualNetworkName = "MyVNET"          # Virtual Network Name
 $networkSecurityGroupName = "default-NSG"     # Network Security Group Name
 
-# Supress the warning messages
+# Supress the warning messages and stop the script on error
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script is the resource group is already exists
 if (Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue) 
@@ -98,7 +99,8 @@ try
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red
+    Write-Host "Execution is failed with the following error, and cleaning the deployment..." -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
     $DeployStatus = $false
     $null = Remove-AzResourceGroup -Name $resourceGroupName -Force 
 }
@@ -111,7 +113,5 @@ finally
         Write-Host ("HostName: {0}" -f $publicIpAddress.DnsSettings.Fqdn)
     }
     else 
-    { 
-        Write-Host -ForegroundColor Red "Deployment is unsuccessful!" 
-    }
+    { Write-Host -ForegroundColor Red "Deployment is unsuccessful!" }
 }
