@@ -5,9 +5,11 @@ Multi-NIC Virtual Machine Creation using Two Subnets
 
 ## Description
 
-This is a conversion of ARM template [101-1vm-2nics-2subnets-1vnet](https://github.com/Azure/azure-quickstart-templates/tree/master/101-1vm-2nics-2subnets-1vnet) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script, and this script will deploy following the resources...
+This is a conversion of ARM template [101-1vm-2nics-2subnets-1vnet](https://github.com/Azure/azure-quickstart-templates/tree/master/101-1vm-2nics-2subnets-1vnet) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
 
-![image](https://github.com/kpatnayakuni/azure-quickstart-psscripts/blob/master/101-1vm-2nics-2subnets-1vnet/resources.jpg)
+This script creates a new VM with two NICs which connect to two different subnets within the same VNet, and it will deploy following the resources...
+
+![image](resources.jpg)
 
 ... and in-addition to it, just in-case if the deployment is not successful, then it will rollback the entire deployment.
 
@@ -29,6 +31,8 @@ I 💙 PS> $param = @{
 
 I 💙 PS> .\Deploy-AzResources.ps1 @param
 ```
+
+## Output
 ```
 cmdlet Deploy-AzResources.ps1 at command pipeline position 1
 Supply values for the following parameters:
@@ -36,5 +40,9 @@ AdminPassword: *************
 Deployment is successful!
 HostName: Not Assigned
 ```
+
+> Azure Cloud Shell comes with Azure PowerShell pre-installed and you can deploy the above resources using Cloud Shell as well.
+>
+>[![](https://shell.azure.com/images/launchcloudshell.png "Launch Azure Cloud Shell")](https://shell.azure.com)
 
 Thank you.
