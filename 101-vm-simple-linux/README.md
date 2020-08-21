@@ -7,7 +7,7 @@ Very simple deployment of a Linux VM
 
 This is a conversion of ARM template [101-vm-simple-linux](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
 
-This script deploys a Linux VM Ubuntu using the latest patched version. This will deploy a Standard_B2s size VM and a 18.04-LTS Version as defaultValue in the resource group location and will return the admin user name, Virtual Network Name, Network Security Group Name and FQDN, and it will deploy following the resources...
+This script deploys a Linux VM Ubuntu using the latest patched version. This will deploy a Standard_B2s size VM and a 18.04-LTS Version as defaultValue in the resource group location and will return the admin user name, Virtual Network Name, Network Security Group Name and FQDN, and it will deploy the following resources...
 
 ![image](https://github.com/kpatnayakuni/azure-quickstart-psscripts/blob/master/101-vm-simple-linux/resources.jpg)
 
