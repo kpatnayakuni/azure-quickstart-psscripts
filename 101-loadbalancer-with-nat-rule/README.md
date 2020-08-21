@@ -25,7 +25,7 @@ Deploy-AzResource.ps1 [-ResourceGroupName] <string> [-Location] <string> [[-Addr
 I 💙 PS> $param = @{
 >> ResourceGroupName = 'simple-rg'
 >> Location = 'westus'
->> DNSNameforLBIP = 'lbwithmultivip'
+>> DNSNameforLBIP = 'lbwithnatrules'
 >> }
 
 I 💙 PS> .\Deploy-AzResources.ps1 @param
