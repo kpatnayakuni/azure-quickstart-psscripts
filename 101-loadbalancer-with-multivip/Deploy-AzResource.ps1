@@ -31,7 +31,7 @@ $NicName = "NetworkInterface1"
 
 # Supress the warning messages
 $WarningPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
-#$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
+$ErrorActionPreference = [System.Management.Automation.ActionPreference]::Stop
 
 # Break the script if the resource group is already exists
 if (Get-AzResourceGroup -Name $ResourceGroupName -ErrorAction SilentlyContinue) 
@@ -61,7 +61,7 @@ try
     $LBBackendAddressPool = New-AzLoadBalancerBackendAddressPoolConfig -Name LoadBalancerBackEnd
     $LBProbe = New-AzLoadBalancerProbeConfig -Name TCPProbe -Protocol Tcp -Port 445 -IntervalInSeconds 5 -ProbeCount 2
     $LBRule1 = New-AzLoadBalancerRuleConfig -Name LBRuleForVIP1 -FrontendIpConfigurationId $LBFrontendIPConfig1.Id -BackendAddressPoolId $LBBackendAddressPool.Id -ProbeId $LBProbe.Id -Protocol Tcp -FrontendPort 443 -BackendPort 443
-    $LBRule2 = New-AzLoadBalancerRuleConfig -Name LBRuleForVIP2 -FrontendIpConfigurationId $LBFrontendIPConfig2.Id -BackendAddressPoolId $LBBackendAddressPool.Id -ProbeId $LBProbe.Id -Protocol Tcp -FrontendPort 443 -BackendPort 443
+    $LBRule2 = New-AzLoadBalancerRuleConfig -Name LBRuleForVIP2 -FrontendIpConfigurationId $LBFrontendIPConfig2.Id -BackendAddressPoolId $LBBackendAddressPool.Id -ProbeId $LBProbe.Id -Protocol Tcp -FrontendPort 443 -BackendPort 444
     $null = New-AzLoadBalancer -ResourceGroupName $ResourceGroupName -Name $LoadBalancerName -Location $Location -FrontendIpConfiguration $LBFrontendIPConfig1, $LBFrontendIPConfig2 -BackendAddressPool $LBBackendAddressPool -LoadBalancingRule $LBRule1, $LBRule2 -Probe $LBProbe
 
     # Create Network Interface Card with load balancer
@@ -74,7 +74,8 @@ try
 catch
 {
     # For any reason if the deployment is failed, then rolling it back
-    Write-Host "Execution failed, cleaning the deployment..." -ForegroundColor Red
+    Write-Host "Execution is failed with the following error, and cleaning the deployment..." -ForegroundColor Red
+    Write-Host $_.Exception.Message -ForegroundColor Red
     $DeployStatus = $false
     $null = Remove-AzResourceGroup -Name $ResourceGroupName -Force 
 }
