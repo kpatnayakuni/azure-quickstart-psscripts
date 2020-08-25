@@ -50,5 +50,3 @@ Deployment is successful!
 >[![](https://shell.azure.com/images/launchcloudshell.png "Launch Azure Cloud Shell")](https://shell.azure.com)
 
 Thank you.
-
-
