@@ -7,7 +7,7 @@ Create a Virtual Machine from a Windows Image with multiple empty Standard SSD D
 
 This is a conversion of ARM template [101-vm-with-standardssd-disk](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-with-standardssd-disk) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
 
-This script allows you to create a Windows Virtual Machine from a specified image during the template deployment. It also attaches multiple empty Standard SSD data disks. Note that you can specify the size of each of the empty data disks. This template also deploys a Virtual Network, Public IP addresses and a Network Interface, and it will deploy the following resources...
+This script allows you to create a Windows Virtual Machine from a specified image during the template deployment. It also attaches multiple empty Standard SSD data disks. Note that you can specify the size of each of the empty data disks. It also deploys a Virtual Network, Public IP addresses and a Network Interface, and it will deploy the following resources...
 
 ![image](resources.png)
 
