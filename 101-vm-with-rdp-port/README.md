@@ -5,7 +5,7 @@ Create a VM with an RDP port
 
 ## Description
 
-This is a conversion of ARM template [101-vm-with-standardssd-disk](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-with-standardssd-disk) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
+This is a conversion of ARM template [101-vm-with-rdp-port](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-with-rdp-port) from the repository [azure\azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) to PowerShell Script.
 
 This script allows you to create a NAT rule in loadbalancer to allow RDP to a vm, and it will deploy the following resources...
 
