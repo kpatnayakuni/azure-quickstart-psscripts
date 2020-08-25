@@ -97,6 +97,10 @@ try
     # Add NIC
     $null = $VMConfig | Add-AzVMNetworkInterface -Id $NetworkInterfaceCard.Id -Primary
 
+    # If the VM is created using premium storage or managed disk then it will create a new standard storage account for boot diagnostics by default
+    # Disable the boot diagnostics
+    $null = $VMConfig | Set-AzVMBootDiagnostic -Disable
+
     # Create Virtual Machine
     $DeployStatus = (New-AzVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VMConfig).IsSuccessStatusCode
 
