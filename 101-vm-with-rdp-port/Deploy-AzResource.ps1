@@ -100,7 +100,6 @@ try
 
     # Create Virtual Machine
     $DeployStatus = (New-AzVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VMConfig).IsSuccessStatusCode
-
 }
 catch
 {
