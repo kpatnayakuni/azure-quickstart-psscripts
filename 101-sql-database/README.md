@@ -42,7 +42,7 @@ I 💙 PS> .\Deploy-AzResources.ps1 @param
 ## Output
 ```
 Deployment is successful!
-Connect SQL Server using sqlo5ckjzma.database.windows.net:1433
+Connect SQL Server using sqlo5ckjzma.database.windows.net,1433
 ```
 
 > Azure Cloud Shell comes with Azure PowerShell pre-installed and you can deploy the above resources using Cloud Shell as well.
