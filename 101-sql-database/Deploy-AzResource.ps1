@@ -59,7 +59,7 @@ finally
     { 
         Write-Host -ForegroundColor Green "Deployment is successful!"
         # Print Sql Server FQDN to connect to the server
-        Write-Host ("Connect SQL Server using {0}:1433" -f $SqlServer.FullyQualifiedDomainName)
+        Write-Host ("Connect SQL Server using {0},1433" -f $SqlServer.FullyQualifiedDomainName)
     }
     else 
     { Write-Host -ForegroundColor Red "Deployment is unsuccessful!" }
